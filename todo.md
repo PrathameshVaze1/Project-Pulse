@@ -38,3 +38,4 @@
 5. Teams
 6. Automated Testing (Pest + Dusk)
 7. Theme (Dark/Light Mode)
+8. Modular Development
