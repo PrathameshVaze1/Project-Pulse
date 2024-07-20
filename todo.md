@@ -26,13 +26,15 @@
    1. Assignee
    2. Due Date
    3. Status
-   4. 
 
+- Settings
+- 
 ### Feat
 
 1. Gitlab Integration to autocreate branches
 2. 2FA
-3. Push Notification
+3. Push Notification with Preferences
 4. Timesheet
 5. Teams
 6. Automated Testing (Pest + Dusk)
+7. Theme (Dark/Light Mode)
