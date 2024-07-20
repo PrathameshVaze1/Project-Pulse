@@ -35,4 +35,4 @@
 3. Push Notification
 4. Timesheet
 5. Teams
-6. 
+6. Automated Testing (Pest + Dusk)
