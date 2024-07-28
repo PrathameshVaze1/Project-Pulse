@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Webauthn\AuthenticatorSelectionCriteria;
 use Webauthn\PublicKeyCredentialCreationOptions;
@@ -14,6 +15,8 @@ class PasskeyController extends Controller
 {
     public function registerOptions(Request $request): PublicKeyCredentialCreationOptions
     {
+        $request->validate(['name' => ['required', 'string', 'max:255']]);
+
         $options = new PublicKeyCredentialCreationOptions(
             rp: new PublicKeyCredentialRpEntity(
                 name: config('app.name'),
@@ -26,11 +29,12 @@ class PasskeyController extends Controller
             ),
             challenge: Str::random(),
             authenticatorSelection: new AuthenticatorSelectionCriteria(
-//                authenticatorAttachment: AuthenticatorSelectionCriteria::AUTHENTICATOR_ATTACHMENT_PLATFORM,
-//                authenticatorAttachment: AuthenticatorSelectionCriteria::AUTHENTICATOR_ATTACHMENT_CROSS_PLATFORM,
                 authenticatorAttachment: AuthenticatorSelectionCriteria::AUTHENTICATOR_ATTACHMENT_NO_PREFERENCE,
+                requireResidentKey: true,
             ),
         );
+
+        Session::flash('passkey-registration-options', $options);
 
         return $options;
     }
