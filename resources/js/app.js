@@ -33,6 +33,7 @@ document.addEventListener('alpine:init', () => {
             try {
                 passkey = await startRegistration(options.data);
             } catch (e) {
+                console.error(e);
                 this.errors = { name: ['Passkey creation failed. Please try again.'] };
 
                 return;
